@@ -11,8 +11,11 @@ namespace RhinoETL.Examples
     [TestFixture]
     public class ThreadingExamples
     {
+        /// <summary>
+        /// Just to show how RhinoETL is naturally multi-threaded.
+        /// </summary>
         [Test]
-        public void SingleThread()
+        public void show_how_threads_work_for_each_operation()
         {
             var process = new EasyEtlProcess(etlProcess =>
                 {

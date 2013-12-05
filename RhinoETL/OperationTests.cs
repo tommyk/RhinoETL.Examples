@@ -9,6 +9,9 @@ using Rhino.Etl.Core.Operations;
 
 namespace RhinoETL.Examples
 {
+    /// <summary>
+    /// Just tests an Operation by itself, not in the pipeline.
+    /// </summary>
     [TestFixture]
     public class OperationTests
     {

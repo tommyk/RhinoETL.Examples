@@ -13,7 +13,7 @@ namespace RhinoETL.Examples
         [Test]
         public void YieldTest1()
         {
-            var enumerable = Helper.CreateEnumerable(5);
+            IEnumerable<int> enumerable = Helper.CreateEnumerable(5);
         }
 
         [Test]

@@ -69,6 +69,7 @@
       <HintPath>..\packages\Rhino-Etl.1.2.3.0\lib\net35\Rhino.Etl.Dsl.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -77,14 +78,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FromFileToDatabaseTests.cs" />
+    <Compile Include="Models\PetaPoco.cs" />
     <Compile Include="OperationTests.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="YieldExamples.cs" />
     <Compile Include="EasyEtlProcess.cs" />
     <Compile Include="ThreadingExamples.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="users.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="user_table_ddl.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
