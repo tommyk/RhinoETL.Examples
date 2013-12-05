@@ -19,7 +19,6 @@ namespace RhinoETL.Examples
     [TestFixture]
     public class FromFileToDatabaseTests
     {
-        
         private Database _db;
 
         [SetUp]
@@ -64,14 +63,40 @@ namespace RhinoETL.Examples
                 user.Sex == "Female"), Is.EqualTo(1));
         }
 
+        [Test]
+        public void bad_data_make_sure_transaction_rolls_back()
+        {
+            var process = new UserCsvToDatabaseProcess("bad_users.csv");
+            process.Execute();
+            if (process.GetAllErrors().Any())
+            {
+                foreach (Exception exception in process.GetAllErrors())
+                    Console.WriteLine(exception.Message);
+            }
 
+
+
+            int rowCount = _db.ExecuteScalar<int>("select count(*) from users");
+            Assert.That(rowCount, Is.EqualTo(0));
+        }
     }
 
     public class UserCsvToDatabaseProcess : EtlProcess
     {
+        private readonly string _userFile;
+        public UserCsvToDatabaseProcess() : this("users.csv")
+        {
+            
+        }
+
+        public UserCsvToDatabaseProcess(string userFile)
+        {
+            _userFile = userFile;
+        }
+
         protected override void Initialize()
         {
-            Register(new PullUsersFromFileOperation("users.csv"));
+            Register(new PullUsersFromFileOperation(_userFile));
             Register(new WriteUsersToDatabase("localRhinoEtlCommand"));
         }
     }

@@ -21,7 +21,7 @@ namespace RhinoETL.Examples
         {
             foreach (int i in Helper.CreateEnumerable(int.MaxValue))
             {
-                if (i == 5) break;
+                if (i == 3) break;
             }
         }
 
